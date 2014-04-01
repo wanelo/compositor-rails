@@ -60,7 +60,7 @@ Let's move the rendering of a user into a partial.
 ```ruby
 # File: app/views/users/index.json.compositor
 list :collection: @users, root: :users do |u|
-  partial!: 'show', user: user
+  partial! 'show', user: user
 end
 ```
 
