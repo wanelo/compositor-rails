@@ -53,6 +53,31 @@ list :collection: @users, root: :users do |u|
 end
 ```
 
+### Partials
+
+Let's move the rendering of a user into a partial.
+
+```ruby
+# File: app/views/users/index.json.compositor
+list :collection: @users, root: :users do |u|
+  partial!: 'show', user: user
+end
+```
+
+```ruby
+# File: app/views/users/show.json.compositor
+user: user
+```
+
+Notes on using partials:
+
+1. Try and keep them to a minimum. The whole point of compositor is to reduce complexity
+   in the composition stage. A enourmous number of partials might just mean a need for
+   another compositor.
+2. Normal Rails partials support collections. These do not as compositor requires you to
+   explicitly define your collection rendering. Of course a partial can render a collection
+   itself, by using the normal compositor list/map functionality.
+
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/compositor-rails/fork )
